@@ -20,7 +20,7 @@ pipeline {
                 }
                 stage('linux') {
                      when {
-                        expression { return true } // Skip for now
+                        expression { return true }
                     }
                     agent { label 'mob-e2e-deb-02' }
                     steps {
@@ -32,13 +32,13 @@ pipeline {
                 }
                 stage('windows') {
                      when {
-                        expression { return false } // Skip for now
+                        expression { return true }
                     }
                     agent { label 'mob-e2e-win-01' }
                     steps {
                         echo "Run windows Test"
-                        sh 'ls -lh dataset/server/dbs'
-                        sh 'ls -lh dataset/server/blobs'
+                        pwsh 'ls dataset\\server\\dbs'
+                        pwsh 'ls dataset\\server\\blobs'
                     }
                 }
             }
